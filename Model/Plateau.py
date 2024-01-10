@@ -47,3 +47,25 @@ def construirePlateau() -> list:
             lstTemp.append(None)
         lst.append(lstTemp)
     return lst
+
+
+def placerPionPlateau(plateau: list, pion: dict, numCol: int) -> int:
+    if type_plateau(plateau) == False:
+        raise TypeError("placerPionPlateau : Le premier paramètre ne correspond pas à un plateau")
+    if type_pion(pion) == False:
+        raise TypeError("placerPionPlateau : Le second paramètre n’est pas un pion")
+    if type(numCol) != int:
+        raise TypeError("placerPionPlateau : Le troisième paramètre n’est pas un entier")
+    if not (0 <= numCol and numCol <= const.NB_COLUMNS - 1):
+        raise ValueError(f"placerPionPlateau : La valeur de la colonne {numCol} n’est pas correcte")
+
+    pos = -1
+    i = 0
+    if plateau[i][numCol] == None:
+        while i < const.NB_LINES and plateau[i][numCol] == None:
+            pos = i
+            i += 1
+        plateau[pos][numCol] = pion
+    
+
+    return pos
