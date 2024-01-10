@@ -50,14 +50,25 @@ def construirePlateau() -> list:
 
 
 def placerPionPlateau(plateau: list, pion: dict, numCol: int) -> int:
+    """Fonction permettant de placer un pion sur le plateau
+
+    :param plateau: Le plateau du jeu
+    :param pion: Le pion séléctionné
+    :param numCol: La colonne sur le plateau séléctionnée
+    :raises TypeError: Si le premier paramètre n'est pas un plateau
+    :raises TypeError: Si le deuxième paramètre n'est pas un pion
+    :raises TypeError: Si le troisième paramètre n'est pas un entier
+    :raises ValueError: Si l'entier saisie est compris dans la taille de la colonne 
+    :return: Retourne la position du pion placé, -1 si impossible 
+    """
     if type_plateau(plateau) == False:
         raise TypeError("placerPionPlateau : Le premier paramètre ne correspond pas à un plateau")
     if type_pion(pion) == False:
-        raise TypeError("placerPionPlateau : Le second paramètre n’est pas un pion")
+        raise TypeError("placerPionPlateau : Le second paramètre n'est pas un pion")
     if type(numCol) != int:
-        raise TypeError("placerPionPlateau : Le troisième paramètre n’est pas un entier")
+        raise TypeError("placerPionPlateau : Le troisième paramètre n'est pas un entier")
     if not (0 <= numCol and numCol <= const.NB_COLUMNS - 1):
-        raise ValueError(f"placerPionPlateau : La valeur de la colonne {numCol} n’est pas correcte")
+        raise ValueError(f"placerPionPlateau : La valeur de la colonne {numCol} n'est pas correcte")
 
     pos = -1
     i = 0
