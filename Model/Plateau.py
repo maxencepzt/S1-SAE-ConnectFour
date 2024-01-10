@@ -35,3 +35,15 @@ def type_plateau(plateau: list) -> bool:
     return True
 
 
+def construirePlateau() -> list:
+    """Fonction permettant de construire un pion
+
+    :return: Retourne une liste de liste sur NB_LINES x NB_COLUMNS contenant des None
+    """
+    lst = []
+    for i in range(const.NB_LINES):
+        lstTemp = []
+        for j in range(const.NB_COLUMNS):
+            lstTemp.append(None)
+        lst.append(lstTemp)
+    return lst
