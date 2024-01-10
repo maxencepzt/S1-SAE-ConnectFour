@@ -1,5 +1,6 @@
 __pycache__/
 .idea/
+.vscode/
 build/
 source/_build/
 source/_static/
