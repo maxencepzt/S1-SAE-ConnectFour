@@ -80,3 +80,26 @@ def placerPionPlateau(plateau: list, pion: dict, numCol: int) -> int:
     
 
     return pos
+
+
+def toStringPlateau(plateau: list) -> str:
+    """Donne le tableau sous forme texte.
+    Peut être utile dans la console pour débugger.
+
+    :param plateau: Plateau séléctionné
+    :return: Retourne le plateau sous forme texte.
+    """
+    tab = ""
+    for i in range(const.NB_LINES):
+        for j in range(const.NB_COLUMNS):
+            case = plateau[i][j]
+            if case != None:
+                if case[const.COULEUR] == 1:
+                    tab += "\x1B[43m \x1B[0m"
+                elif case[const.COULEUR] == 0:
+                    tab += "\x1B[41m \x1B[0m"
+            else:
+                tab += " "
+        tab += "\n"
+    tab += "-" * const.NB_COLUMNS + "\n" + "".join(str(i) for i in range(const.NB_COLUMNS))
+    return tab
