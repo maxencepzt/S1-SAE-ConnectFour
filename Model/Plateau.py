@@ -103,3 +103,39 @@ def toStringPlateau(plateau: list) -> str:
         tab += "\n"
     tab += "-" * const.NB_COLUMNS + "\n" + "".join(str(i) for i in range(const.NB_COLUMNS))
     return tab
+
+
+def detecter4horizontalPlateau(plateau: list, couleur: int) -> list:
+    f"""Détecte si 4 pions de la même couleur sont alignés horizontalement
+
+    :param plateau: Plateau séléctionné
+    :param couleur: Couleur séléctionnée
+    :raises TypeError: Si le premier paramètre ne correspond pas à un plateau
+    :raises TypeError: Si le second paramètre n'est pas un entier
+    :raises ValueError: La valeur de la couleur {couleur} n'est pas correcte
+    :return: Retourne une liste des pions séléctionnés, il peut y avoir plusieurs lignes.
+    """
+    if type_plateau(plateau) == False:
+        raise TypeError("detecter4horizontalPlateau : Le premier paramètre ne correspond pas à un plateau")
+    if type(couleur) != int:
+        raise TypeError("detecter4horizontalPlateau : le second paramètre n'est pas un entier ")
+    if couleur not in const.COULEURS:
+        raise ValueError(f"détecter4horizontalPlateau : La valeur de la couleur {couleur} n'est pas correcte")
+    
+    lst = []
+    for i in range(const.NB_LINES):
+        lstTemp = []
+        j = 0
+        continuer = True
+        while continuer and j < const.NB_COLUMNS -3 and len(lstTemp) <= 4:
+            pion1, pion2, pion3, pion4 = plateau[i][j], plateau[i][j+1], plateau[i][j+2], plateau[i][j+3]
+            if pion1 != None and pion2 != None and pion3 != None and pion4 != None:
+                if getCouleurPion(pion1) == getCouleurPion(pion2) == getCouleurPion(pion3) == getCouleurPion(pion4) == couleur:
+                    lstTemp.extend([pion1, pion2, pion3, pion4])
+                    continuer = False
+            j += 1
+        if len(lstTemp) == 4:
+            lst.extend(lstTemp)
+            lstTemp = []
+            
+    return lst
