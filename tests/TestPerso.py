@@ -19,3 +19,10 @@ def testDetecter4horizontalPlateau() -> None:
     print(toStringPlateau(p))
     print(detecter4horizontalPlateau(p,0))
 
+def testDetecter4verticalPlateau() -> None:
+    p = construirePlateau()
+    for _ in range(20):
+        placerPionPlateau(p, construirePion(choice(const.COULEURS)),
+        randint(0, const.NB_COLUMNS - 1))
+    print(toStringPlateau(p))
+    print(detecter4verticalPlateau(p,0))
