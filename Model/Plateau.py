@@ -113,7 +113,7 @@ def detecter4horizontalPlateau(plateau: list, couleur: int) -> list:
     :raises TypeError: Si le premier paramètre ne correspond pas à un plateau
     :raises TypeError: Si le second paramètre n'est pas un entier
     :raises ValueError: La valeur de la couleur {couleur} n'est pas correcte
-    :return: Retourne une liste des pions séléctionnés, il peut y avoir plusieurs lignes.
+    :return: Retourne une liste des pions alignés verticalement, il peut y avoir plusieurs lignes.
     """
     if type_plateau(plateau) == False:
         raise TypeError("detecter4horizontalPlateau : Le premier paramètre ne correspond pas à un plateau")
@@ -148,7 +148,7 @@ def detecter4verticalPlateau(plateau: list, couleur: int) -> list:
     :raises TypeError: Si le premier paramètre ne correspond pas à un plateau
     :raises TypeError: Si le second paramètre n'est pas un entier
     :raises ValueError: La valeur de la couleur {couleur} n'est pas correcte
-    :return: Retourne une liste des pions séléctionnés, il peut y avoir plusieurs lignes.
+    :return: Retourne une liste des pions alignés verticalement, il peut y avoir plusieurs lignes.
     """
     if type_plateau(plateau) == False:
         raise TypeError("detecter4verticalPlateau : Le premier paramètre ne correspond pas à un plateau")
@@ -173,4 +173,41 @@ def detecter4verticalPlateau(plateau: list, couleur: int) -> list:
             lst.extend(lstTemp)
             lstTemp = []
             
+    return lst
+
+def detecter4diagonaleDirectePlateau(plateau: list, couleur: int) -> list:
+    f"""Détecte si 4 pions de la même couleur sont alignés sur la diagonale directe.
+
+    :param plateau: Plateau séléctionné
+    :param couleur: Couleur séléctionnée
+    :raises TypeError: Si le premier paramètre ne correspond pas à un plateau
+    :raises TypeError: Si le second paramètre n'est pas un entier
+    :raises ValueError: La valeur de la couleur {couleur} n'est pas correcte
+    :return: Retourne une liste des pions alignés sur la diagonale directe, il peut y avoir plusieurs lignes.
+    """
+    if type_plateau(plateau) == False:
+        raise TypeError("detecter4diagonaleDirectePlateau : Le premier paramètre ne correspond pas à un plateau")
+    if type(couleur) != int:
+        raise TypeError("detecter4diagonaleDirectePlateau : le second paramètre n'est pas un entier ")
+    if couleur not in const.COULEURS:
+        raise ValueError(f"detecter4diagonaleDirectePlateau : La valeur de la couleur {couleur} n'est pas correcte")
+    
+    lst = []
+    for i in range(const.NB_LINES - 3):
+        for j in range(const.NB_COLUMNS - 3):
+            lstTemp = []
+            for k in range(4):
+                ligne = i + k
+                colonne = j + k
+                lstTemp.append(plateau[ligne][colonne])
+
+            fonctionne = True
+            for case in lstTemp:
+                if case == None:
+                    fonctionne = False
+                elif case[const.COULEUR] == couleur:
+                    fonctionne = False
+            if fonctionne:
+                lst.extend(lstTemp)
+
     return lst
