@@ -35,3 +35,17 @@ def type_joueur(joueur: dict) -> bool:
     return True
 
 
+def construireJoueur(couleur: int) -> dict:
+    """Fonction permettant de construire un joueur
+
+    :param couleur: Couleur du joueur à construire
+    :raises TypeError: Si le paramètre n'est pas un entier
+    :raises ValueError: Si l'entier ne représente pas une couleur
+    :return: Un dictionnaire représentant le joueur
+    """
+    if type(couleur) != int:
+        raise TypeError("construireJoueur : Le paramètre n'est pas un entier")
+    if couleur not in const.COULEURS:
+        raise ValueError(f"construireJoueur : L'entier donné {couleur} n'est pas une couleur.")
+    
+    return {const.COULEUR: couleur, const.PLATEAU: None, const.PLACER_PION: None}

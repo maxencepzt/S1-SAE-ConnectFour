@@ -1,5 +1,6 @@
 from Model.Constantes import *
 from Model.Plateau import *
+from Model.Joueur import *
 from Model.Pion import *
 from random import randint, choice
 
@@ -64,7 +65,13 @@ def testIsRempliPlateau() -> None:
     print(toStringPlateau(p))
     print(isRempliPlateau(p))
     return None
-"""
-for i in range(200):
-    testIsRempliPlateau()
-"""
+
+def testConstruireJoueur() -> None:
+    print(construireJoueur('4'))
+    print(construireJoueur(4))
+    print(construireJoueur('0'))
+    print(construireJoueur(0))
+    print(construireJoueur(1))
+    return None
+
+testConstruireJoueur()
