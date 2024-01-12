@@ -248,3 +248,14 @@ def detecter4diagonaleIndirectePlateau(plateau: list, couleur: int) -> list:
                 lst.extend(lstTemp)
 
     return lst
+
+def getPionsGagnantsPlateau(plateau: list) -> list:
+    lst = []
+    
+    for couleur in const.COULEURS:
+        lst += detecter4horizontalPlateau(plateau, couleur)
+        lst += detecter4verticalPlateau(plateau, couleur)
+        lst += detecter4diagonaleDirectePlateau(plateau, couleur)
+        lst += detecter4diagonaleIndirectePlateau(plateau, couleur)
+    
+    return lst
