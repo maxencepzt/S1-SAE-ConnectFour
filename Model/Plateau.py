@@ -211,3 +211,40 @@ def detecter4diagonaleDirectePlateau(plateau: list, couleur: int) -> list:
                 lst.extend(lstTemp)
 
     return lst
+
+def detecter4diagonaleIndirectePlateau(plateau: list, couleur: int) -> list:
+    f"""Détecte si 4 pions de la même couleur sont alignés sur la diagonale indirecte.
+
+    :param plateau: Plateau séléctionné
+    :param couleur: Couleur séléctionnée
+    :raises TypeError: Si le premier paramètre ne correspond pas à un plateau
+    :raises TypeError: Si le second paramètre n'est pas un entier
+    :raises ValueError: La valeur de la couleur {couleur} n'est pas correcte
+    :return: Retourne une liste des pions alignés sur la diagonale indirecte, il peut y avoir plusieurs lignes.
+    """
+    if type_plateau(plateau) == False:
+        raise TypeError("detecter4diagonaleIndirectePlateau : Le premier paramètre ne correspond pas à un plateau")
+    if type(couleur) != int:
+        raise TypeError("detecter4diagonaleIndirectePlateau : le second paramètre n'est pas un entier ")
+    if couleur not in const.COULEURS:
+        raise ValueError(f"detecter4diagonaleIndirectePlateau : La valeur de la couleur {couleur} n'est pas correcte")
+    
+    lst = []
+    for i in range(const.NB_LINES - 3):
+        for j in range(3, const.NB_COLUMNS):
+            lstTemp = []
+            for k in range(4):
+                ligneK = i + k
+                colonneK = j - k
+                lstTemp.append(plateau[ligneK][colonneK])
+
+            fonctionne = True
+            for case in lstTemp:
+                if case == None:
+                    fonctionne = False
+                elif case[const.COULEUR] == couleur:
+                    fonctionne = False
+            if fonctionne:
+                lst.extend(lstTemp)
+
+    return lst
