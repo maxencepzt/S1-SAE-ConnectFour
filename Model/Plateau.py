@@ -250,6 +250,15 @@ def detecter4diagonaleIndirectePlateau(plateau: list, couleur: int) -> list:
     return lst
 
 def getPionsGagnantsPlateau(plateau: list) -> list:
+    """Donne toutes les séries pions pouvant être gagants
+
+    :param plateau: Plateau séléctionné
+    :raises TypeError: Si le paramètre ne correspond pas à un plateau
+    :return: Retourne une liste des pions alignés sur la verticale, diagonale, diagonale directe et indirecte
+    """
+    if type_plateau(plateau) == False:
+        raise TypeError("getPionsGagnantsPlateau : Le paramètre n'est pas un plateau")
+    
     lst = []
     
     for couleur in const.COULEURS:
