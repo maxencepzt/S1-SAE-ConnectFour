@@ -66,12 +66,27 @@ def testIsRempliPlateau() -> None:
     print(isRempliPlateau(p))
     return None
 
-def testConstruireJoueur() -> None:
-    print(construireJoueur('4'))
-    print(construireJoueur(4))
-    print(construireJoueur('0'))
-    print(construireJoueur(0))
-    print(construireJoueur(1))
+def testGetCouleurJoueur() -> None:
+    joueur = construireJoueur(0)
+    print(getCouleurJoueur(joueur))
+    joueur = construireJoueur(1)
+    print(getCouleurJoueur(joueur))
     return None
 
-testConstruireJoueur()
+def testGetPlateauJoueur() -> None:
+    joueur = construireJoueur(0)
+    print(getPlateauJoueur(joueur))
+    joueur = construireJoueur(1)
+    print(getPlateauJoueur(joueur))
+    return None
+
+def testGetPlacerPionJoueur() -> None:
+    joueur = construireJoueur(0)
+    print(getPlacerPionJoueur(joueur))
+    joueur = construireJoueur(1)
+    print(getPlacerPionJoueur(joueur))
+    return None
+
+testGetCouleurJoueur()
+testGetPlateauJoueur()
+testGetPlacerPionJoueur()
