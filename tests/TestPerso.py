@@ -87,6 +87,15 @@ def testGetPlacerPionJoueur() -> None:
     print(getPlacerPionJoueur(joueur))
     return None
 
-testGetCouleurJoueur()
-testGetPlateauJoueur()
-testGetPlacerPionJoueur()
+# testGetCouleurJoueur()
+# testGetPlateauJoueur()
+# testGetPlacerPionJoueur()
+
+def testGetPionJoueur() -> None:
+    joueur = construireJoueur(0)
+    print(getPionJoueur(joueur))
+    joueur = construireJoueur(1)
+    print(getPionJoueur(joueur))
+    return None
+
+# testGetPionJoueur()
