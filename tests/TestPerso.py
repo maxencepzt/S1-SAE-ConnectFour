@@ -99,3 +99,24 @@ def testGetPionJoueur() -> None:
     return None
 
 # testGetPionJoueur()
+
+def testSetPlateauJoueur() -> None:
+    p = construirePlateau()
+    for _ in range(20):
+        placerPionPlateau(p, construirePion(choice(const.COULEURS)),
+        randint(0, const.NB_COLUMNS - 1))
+    print(toStringPlateau(p))
+    joueur = construireJoueur(0)
+    setPlateauJoueur(joueur, p)
+    print(toStringPlateau(joueur[const.PLATEAU]))
+    return None
+
+# testSetPlateauJoueur()
+
+def testSetPlacerPionJoueur() -> None:
+    p = construireJoueur(0)
+    setPlacerPionJoueur(p,print("Test OK"))
+    print(p[const.PLACER_PION])
+    return None
+
+# testSetPlacerPionJoueur()
