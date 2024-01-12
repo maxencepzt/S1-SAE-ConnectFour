@@ -56,7 +56,15 @@ def testGetPionsGagnantsPlateau() -> None:
     print(getPionsGagnantsPlateau(p))
     return None
 
+def testIsRempliPlateau() -> None:
+    p = construirePlateau()
+    for _ in range(60):
+        placerPionPlateau(p, construirePion(choice(const.COULEURS)),
+        randint(0, const.NB_COLUMNS - 1))
+    print(toStringPlateau(p))
+    print(isRempliPlateau(p))
+    return None
 """
 for i in range(200):
-    testGetPionsGagnantsPlateau()
+    testIsRempliPlateau()
 """

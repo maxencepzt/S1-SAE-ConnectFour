@@ -260,7 +260,6 @@ def getPionsGagnantsPlateau(plateau: list) -> list:
         raise TypeError("getPionsGagnantsPlateau : Le paramètre n'est pas un plateau")
     
     lst = []
-    
     for couleur in const.COULEURS:
         lst += detecter4horizontalPlateau(plateau, couleur)
         lst += detecter4verticalPlateau(plateau, couleur)
@@ -268,3 +267,21 @@ def getPionsGagnantsPlateau(plateau: list) -> list:
         lst += detecter4diagonaleIndirectePlateau(plateau, couleur)
     
     return lst
+
+def isRempliPlateau(plateau: list) -> bool:
+    """Informe si le tableau est rempli ou non.
+
+    :param plateau: Plateau séléctionné
+    :raises TypeError: Si le paramètre ne correspond pas à un plateau
+    :return: Retourne un booléen si le tableau est rempli ou non
+    """
+    if type_plateau(plateau) == False:
+        raise TypeError("isRempliPlateau : Le paramètre n'est pas un plateau")
+    
+    i = 0
+    rempli = True
+    while rempli and i < const.NB_COLUMNS:
+        if plateau[0][i] == None:
+            rempli = False
+        i += 1
+    return rempli
