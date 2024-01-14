@@ -330,3 +330,23 @@ def placerPionLignePlateau(plateau: list, pion: dict, numLigne: int, left: bool)
             descente += 1
     
     return (lstPion, descente)
+
+def encoderPlateau(plateau: list) -> int:
+    """Fonction permettant d'encoder le plateau en une chaine de caractère
+
+    :param plateau: Plateau séléctionné
+    :raises TypeError: Si le paramètre ne correspond pas à un plateau.
+    :return: Une chaîne de caractères représentant l'encodage du plateau.
+    """
+    if type_plateau(plateau) == False:
+        raise TypeError("encoderPlateau : le paramètre ne correspond pas à un plateau")
+    tab = ""
+    for i in range(const.NB_LINES):
+        for j in range(const.NB_COLUMNS):
+            if plateau[i][j] == None:
+                tab += "_"
+            elif plateau[i][j][const.COULEUR] == 0:
+                tab += "J"
+            else:
+                tab += "R"
+    return tab
