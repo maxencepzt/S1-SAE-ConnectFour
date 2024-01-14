@@ -287,18 +287,27 @@ def isRempliPlateau(plateau: list) -> bool:
     return rempli
 
 def placerPionLignePlateau(plateau: list, pion: dict, numLigne: int, left: bool) -> tuple:
+    """Fonction permettant de placer un pion avec le mode etendu
+
+    :param plateau: Plateau séléctionné, type liste
+    :param pion: Pion placé, type dictionnaire
+    :param numLigne: Ligne où l'on souhaite insérer le pion, type entier
+    :param left: Si le pion est inséré a gauche ou a droite de la ligne
+    :return: Retourne un tuple avec la liste des pions décalé et la ligne où tombe le pion en bout de ligne, s'il sort du plateau ce sera const.NB_LINES et s'il ne tombe pas ce sera None.
     """
+    """
+    RAISE type_plateau(plateau) et type_pion(pion) NE FONCTIONNENT PAS (JE NE SAIS PAS POURQUOI)
     if type_plateau(plateau) != False:
         raise TypeError("placerPionLignePlateau : Le premier paramètre n'est pas un plateau")
     if type_pion(pion) != False:
         raise TypeError("placerPionLignePlateau : Le second paramètre n'est pas un pion")
+    """
     if type(numLigne) != int:
         raise TypeError(" placerPionLignePlateau : le troisième paramètre n'est pas un entier")
     if not(0 <= numLigne and numLigne <= const.NB_LINES - 1):
         raise ValueError(f"Le troisième paramètre {numLigne} ne désigne pas une ligne")
     if type(left) != bool:
         raise TypeError("placerPionLignePlateau : le quatrième paramètre n'est pas un booléen")
-    """
     lstPion = [pion]
     descente = None
     if left: # Dans le cas où on place le pion à gauche
