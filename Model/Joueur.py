@@ -160,3 +160,33 @@ def initialiserIAJoueur(joueur: list, play: bool) -> None:
     if play == False:
         setPlacerPionJoueur(joueur, _placerPionJoueur)
     return None
+
+def getModeEtenduJoueur(joueur: dict) -> bool:
+    """Fonction qui nous informe si le jeu est en mode etendu
+
+    :param joueur: Joueur séléctionné, type dictionnaire
+    :raises TypeError: Si le type de paramètre ne correspond pas à un joueur
+    :return: Renvoie un booléen True si le jeu est en mode etendu, False sinon
+    """
+    if type_joueur(joueur) == False:
+        raise TypeError("getModeEtenduJoueur : le paramètre ne correspond pas à un joueur")
+    return const.MODE_ETENDU in joueur
+
+def setModeEtenduJoueur(joueur: dict, ajoutSuppr: bool) -> None:
+    """Fonction qui ajoute une clé const.MODE_ETENDU à joueur si ajoutSuppr vaut True, sinon elle supprime la clé const.MODE_ETENDU de joueur.
+
+    :param joueur: Joueur séléctionné, type dictionnaire
+    :param ajoutSuppr: Booléen qui va ajouter ou supprimer const.MODE_ETENDU de joueur
+    :raises TypeError: Si le type de paramètre ne correspond pas à un joueur
+    :raises TypeError: Si le type de paramètre ne correspond pas à un booléen
+    :return: Ne retourne rien
+    """
+    if type_joueur(joueur) == False:
+        raise TypeError("setModeEtenduJoueur : le premier paramètre ne correspond pas à un joueur")
+    if type(ajoutSuppr) != bool:
+        raise TypeError("setModeEtenduJoueur : le deuxième paramètre ne correspond pas à un booléen")
+    if ajoutSuppr:
+        joueur[const.MODE_ETENDU] = None
+    else:
+        del joueur[const.MODE_ETENDU]
+    return None
