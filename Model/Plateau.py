@@ -310,9 +310,9 @@ def placerPionLignePlateau(plateau: list, pion: dict, numLigne: int, left: bool)
         for k in range(min(len(lstPion), const.NB_COLUMNS)): # Boucle qui va tout décaller d'un coup en fonction de la taille de la liste
                 plateau[numLigne][k] = lstPion[k]
         descente = numLigne
-        while descente+1  < const.NB_LINES -1 and plateau[descente+1][len(lstPion)-1] == None :
-            plateau[descente+1][len(lstPion)-1] = plateau[descente][len(lstPion)-1]
-            plateau[descente][len(lstPion)-1] = None
+        while descente + 1 < const.NB_LINES and plateau[descente + 1][len(lstPion) - 1] == None:
+            plateau[descente + 1][len(lstPion) - 1] = plateau[descente][len(lstPion) - 1]
+            plateau[descente][len(lstPion) - 1] = None
             descente += 1
     
     else: # Dans le cas où on place le pion à droite
@@ -324,9 +324,9 @@ def placerPionLignePlateau(plateau: list, pion: dict, numLigne: int, left: bool)
         for k in range(min(len(lstPion), const.NB_COLUMNS)): # Boucle qui va tout décaller d'un coup en fonction de la taille de la liste
             plateau[numLigne][const.NB_COLUMNS-1-k] = lstPion[k]
         descente = numLigne
-        while descente + 1 < const.NB_LINES - 1 and plateau[descente + 1][const.NB_COLUMNS-1-len(lstPion)+1] == None:
-            plateau[descente + 1][const.NB_COLUMNS-1-len(lstPion)+1] = plateau[descente][const.NB_COLUMNS-1-len(lstPion)+1]
-            plateau[descente][const.NB_COLUMNS-1-len(lstPion)+1] = None
+        while descente + 1 < const.NB_LINES and plateau[descente + 1][const.NB_COLUMNS - 1 - len(lstPion) + 1] == None:
+            plateau[descente + 1][const.NB_COLUMNS - 1 - len(lstPion) + 1] = plateau[descente][const.NB_COLUMNS - 1 - len(lstPion) + 1]
+            plateau[descente][const.NB_COLUMNS - 1 - len(lstPion) + 1] = None
             descente += 1
     
     return (lstPion, descente)
