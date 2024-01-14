@@ -350,3 +350,29 @@ def encoderPlateau(plateau: list) -> int:
             else:
                 tab += "R"
     return tab
+
+def isPatPlateau(plateau: list, histoPlat: dict) -> bool:
+    """Fonction permettant de vérifier si le plateau apparait 5 fois dans l'historigramme des plateaux. 
+
+    :param plateau: Plateau séléctionné
+    :param histoPlat: Dictionnaire représentant l'histogramme des plateaux
+    :raises TypeError: Si le premier paramètre ne correspond pas à un plateau
+    :raises TypeError: Si le second paramètre ne correspond pas à un dictionnaire
+    :return: Retourne True si le plateau apparait pour la cinquième fois, False si non.
+    """
+    if type_plateau(plateau) == False:
+        raise TypeError("isPatPlateau : Le premier paramètre n'est pas un plateau")
+    if type(histoPlat) != dict:
+        raise TypeError("isPatPlateau : Le deuxième paramètre n'est pas un dictionnaire")
+    
+    txtPlat = encoderPlateau(plateau)
+    res = False
+    if txtPlat in histoPlat:
+        histoPlat[txtPlat] += 1
+        if histoPlat[txtPlat] >= 5:
+            res = True
+    else:
+        histoPlat[txtPlat] = 1
+    
+    return res
+        
