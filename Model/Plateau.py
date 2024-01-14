@@ -285,3 +285,48 @@ def isRempliPlateau(plateau: list) -> bool:
             rempli = False
         i += 1
     return rempli
+
+def placerPionLignePlateau(plateau: list, pion: dict, numLigne: int, left: bool) -> tuple:
+    """
+    if type_plateau(plateau) != False:
+        raise TypeError("placerPionLignePlateau : Le premier paramètre n'est pas un plateau")
+    if type_pion(pion) != False:
+        raise TypeError("placerPionLignePlateau : Le second paramètre n'est pas un pion")
+    if type(numLigne) != int:
+        raise TypeError(" placerPionLignePlateau : le troisième paramètre n'est pas un entier")
+    if not(0 <= numLigne and numLigne <= const.NB_LINES - 1):
+        raise ValueError(f"Le troisième paramètre {numLigne} ne désigne pas une ligne")
+    if type(left) != bool:
+        raise TypeError("placerPionLignePlateau : le quatrième paramètre n'est pas un booléen")
+    """
+    lstPion = [pion]
+    descente = None
+    if left: # Dans le cas où on place le pion à gauche
+        i = 0
+        while i <= const.NB_COLUMNS -1 and plateau[numLigne][i] != None: # On parcourt toute la liste à partir de la gauche, jusqua tomber sur un None ou bien arriver au bout de la ligne
+            lstPion.append(plateau[numLigne][i]) # On ajoute a chaque fois le pion à la liste
+            i += 1
+            
+        for k in range(min(len(lstPion), const.NB_COLUMNS)): # Boucle qui va tout décaller d'un coup en fonction de la taille de la liste
+                plateau[numLigne][k] = lstPion[k]
+        descente = numLigne
+        while descente+1  < const.NB_LINES -1 and plateau[descente+1][len(lstPion)-1] == None :
+            plateau[descente+1][len(lstPion)-1] = plateau[descente][len(lstPion)-1]
+            plateau[descente][len(lstPion)-1] = None
+            descente += 1
+    
+    else: # Dans le cas où on place le pion à droite
+        i = const.NB_COLUMNS -1
+        while 0 <= i and plateau[numLigne][i] != None: # On parcourt toute la liste à partir de la droite, jusqua tomber sur un None ou bien arriver au bout de la ligne
+            lstPion.append(plateau[numLigne][i]) # On ajoute a chaque fois le pion à la liste
+            i -= 1
+            
+        for k in range(min(len(lstPion), const.NB_COLUMNS)): # Boucle qui va tout décaller d'un coup en fonction de la taille de la liste
+            plateau[numLigne][const.NB_COLUMNS-1-k] = lstPion[k]
+        descente = numLigne
+        while descente + 1 < const.NB_LINES - 1 and plateau[descente + 1][const.NB_COLUMNS-1-len(lstPion)+1] == None:
+            plateau[descente + 1][const.NB_COLUMNS-1-len(lstPion)+1] = plateau[descente][const.NB_COLUMNS-1-len(lstPion)+1]
+            plateau[descente][const.NB_COLUMNS-1-len(lstPion)+1] = None
+            descente += 1
+    
+    return (lstPion, descente)
