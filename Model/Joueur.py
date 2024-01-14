@@ -131,15 +131,20 @@ def setPlacerPionJoueur(joueur: dict, fonction: callable) -> None:
     return None
 
 def _placerPionJoueur(joueur: list) -> int:
-    """Fonction qui cherche une place pour pouvoir 
+    """Fonction qui cherche une place pour pouvoir placer le pion, avec prise en compte du mode etendu
 
     :param joueur: Joueur séléctionné
     :return: Retourne un entier pour pouvoir placer le pion
     """
-    
-    res = randint(0, const.NB_COLUMNS-1)
-    while joueur[const.PLATEAU][0][res] != None:
+    if getModeEtenduJoueur(joueur):
+        res = randint(- const.NB_COLUMNS, const.NB_COLUMNS + const.NB_LINES - 1)
+        if 0 <= res <=  const.NB_LINES - 1:
+            while joueur[const.PLATEAU][0][res] != None:
+                res = randint(0, const.NB_COLUMNS-1)
+    else:
         res = randint(0, const.NB_COLUMNS-1)
+        while joueur[const.PLATEAU][0][res] != None:
+            res = randint(0, const.NB_COLUMNS-1)
         
     return res
 
